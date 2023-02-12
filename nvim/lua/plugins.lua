@@ -40,6 +40,13 @@ return require('packer').startup(function(use)
 
     use "EdenEast/nightfox.nvim"
 
+    -- Autocompletion
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-cmdline'
+    use 'hrsh7th/cmp-buffer'
+
     vim.cmd([[
         augroup packer_user_config
             autocmd!
@@ -56,5 +63,3 @@ return require('packer').startup(function(use)
         require('packer').sync()
     end
 end)
-
-
