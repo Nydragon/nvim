@@ -40,6 +40,8 @@ return require('packer').startup(function(use)
 
     use "EdenEast/nightfox.nvim"
 
+    use "lukas-reineke/virt-column.nvim"
+
     -- Autocompletion
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/nvim-cmp'
@@ -53,11 +55,12 @@ return require('packer').startup(function(use)
             autocmd BufWritePost plugins.lua source <afile> | PackerCompile
         augroup end
     ]])
-
     
-    -- setup section
+    -- init configs
     require('nightfox-config')
     require('nvim-tree-config')
+    require('lualine').setup()
+    require("virt-column").setup()
 
     if packer_bootstrap then
         require('packer').sync()

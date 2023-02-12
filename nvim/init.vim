@@ -10,4 +10,3 @@ set autoindent
 filetype plugin on
 
 lua require('plugins')
-lua require('lualine').setup()
