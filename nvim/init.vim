@@ -7,3 +7,7 @@ set tabstop=4
 set expandtab
 set shiftwidth=4
 set autoindent
+filetype plugin on
+
+lua require('plugins')
+lua require('lualine').setup()
