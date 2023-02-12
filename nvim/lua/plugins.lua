@@ -49,8 +49,6 @@ return require('packer').startup(function(use)
 
     
     -- setup section
-    require('nvim-tree').setup()    
-
     require('nightfox-config')
     require('nvim-tree-config')
 
