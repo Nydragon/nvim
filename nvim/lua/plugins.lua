@@ -40,18 +40,26 @@ return require('packer').startup(function(use)
 
         use "EdenEast/nightfox.nvim"
 
-        use "lukas-reineke/virt-column.nvim"
+        use "lukas-reineke/virt-column.nvim" 
 
-        use({
+        use {
             "hrsh7th/nvim-cmp",
             requires = {
                 "hrsh7th/cmp-buffer",
                 "hrsh7th/cmp-nvim-lsp",
+                "hrsh7th/cmp-cmdline",
                 "hrsh7th/cmp-path",
                 "hrsh7th/cmp-nvim-lua",
-                "onsails/lspkind-nvim",
             }
-        })
+        }
+
+        use {
+            'samodostal/image.nvim',
+            requires = {
+                'nvim-lua/plenary.nvim',
+                'm00qek/baleia.nvim'
+            },
+        }
 
         vim.cmd([[
         augroup packer_user_config
@@ -64,9 +72,11 @@ return require('packer').startup(function(use)
         require('nightfox-config')
         require('nvim-lsp-config')
         require('nvim-tree-config')
+        require('nvim-cmp-config')
+        require('image-config')
         require('lualine').setup()
         require("virt-column").setup()
-        require('nvim-cmp-config')
+
         if packer_bootstrap then
             require('packer').sync()
         end
