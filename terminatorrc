@@ -2,7 +2,7 @@
   window_state = fullscreen
   borderless = True
   extra_styling = False
-  tab_position = bottom
+  tab_position = hidden
   inactive_color_offset = 0.9
   suppress_multiple_term_dialog = True
 [keybindings]

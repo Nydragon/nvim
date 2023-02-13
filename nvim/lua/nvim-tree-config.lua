@@ -4,7 +4,6 @@ vim.g.loaded_netrwPlugin = 1
 require("nvim-tree").setup()
 
 local function open_nvim_tree(data)
-
   -- buffer is a real file on the disk
   local real_file = vim.fn.filereadable(data.file) == 1
 
