@@ -34,14 +34,22 @@ return require('packer').startup(function(use)
         use 'nvim-treesitter/nvim-treesitter'
 
         use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
+
+        -- (batch)commenting tool
         use 'preservim/nerdcommenter'
 
         use "lukas-reineke/indent-blankline.nvim"
 
+        -- themeing
         use "EdenEast/nightfox.nvim"
 
-        use "lukas-reineke/virt-column.nvim" 
+        -- thin bar indicating an arbitray character limit
+        use "lukas-reineke/virt-column.nvim"
 
+        -- fuzzy file finder
+        use 'nvim-telescope/telescope.nvim'
+
+        -- autocompletion engine, plugs into lsp
         use {
             "hrsh7th/nvim-cmp",
             requires = {
@@ -53,6 +61,7 @@ return require('packer').startup(function(use)
             }
         }
 
+        -- renders images in nvim
         use {
             'samodostal/image.nvim',
             requires = {
@@ -61,12 +70,23 @@ return require('packer').startup(function(use)
             },
         }
 
+        use {
+            'mrcjkb/haskell-tools.nvim',
+            requires = {
+                'nvim-lua/plenary.nvim',
+                'nvim-telescope/telescope.nvim'
+            },
+            branch = '1.x.x',
+        }
+
+        use 'dense-analysis/ale'
+
         vim.cmd([[
         augroup packer_user_config
             autocmd!
             autocmd BufWritePost plugins.lua source <afile> | PackerCompile
         augroup end
-    ]])
+        ]])
 
         -- init configs
         require('nightfox-config')
@@ -74,8 +94,13 @@ return require('packer').startup(function(use)
         require('nvim-tree-config')
         require('nvim-cmp-config')
         require('image-config')
+        require('haskell-config')
+        require('telescope-config')
         require('lualine').setup()
         require("virt-column").setup()
+
+
+        vim.g.ale_linters = { haskell =  {'hlint', 'hdevtools', 'hfmt'} }
 
         if packer_bootstrap then
             require('packer').sync()

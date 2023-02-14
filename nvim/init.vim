@@ -8,6 +8,7 @@ set expandtab
 set shiftwidth=4
 set autoindent
 set completeopt=menu,menuone,noselect
+
 filetype plugin on
 
 lua require('plugins')
