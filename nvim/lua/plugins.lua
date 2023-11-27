@@ -28,7 +28,10 @@ return require("packer").startup(function(use)
 		},
 	})
 
-	use({ "romgrk/barbar.nvim", requires = "nvim-web-devicons" })
+	use({
+		"romgrk/barbar.nvim",
+		requires = { "nvim-web-devicons", "lewis6991/gitsigns.nvim" },
+	})
 
 	use("nvim-treesitter/nvim-treesitter")
 
@@ -87,14 +90,15 @@ return require("packer").startup(function(use)
 	require("nvim-tree-config")
 	require("nvim-cmp-config")
 	require("autoclose-config")
-	require("image-config")
+    require("barbar-config")
+	--require("image-config")
 	require("telescope-config")
 	-- require('ale-config')
 	require("formatter-config")
 	require("lualine").setup()
 	require("virt-column").setup()
 
-	if packer_bootstrap then
+    if packer_bootstrap then
 		require("packer").sync()
 	end
 end)

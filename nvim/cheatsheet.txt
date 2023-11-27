@@ -1,1 +1,6 @@
+## Telescope @custom:
 Search, Preview and Open file | <leader>ff
+
+## Formatter @custom:
+Format current buffer | <leader>f
+Format and write current buffer | <leader>F

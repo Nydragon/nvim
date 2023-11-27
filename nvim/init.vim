@@ -16,4 +16,6 @@ augroup FormatAutogroup
   autocmd BufWritePost * FormatWrite
 augroup END
 
+so "keybinding.vim"
+
 lua require('plugins')
