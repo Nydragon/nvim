@@ -4,3 +4,8 @@ Search, Preview and Open file | <leader>ff
 ## Formatter @custom:
 Format current buffer | <leader>f
 Format and write current buffer | <leader>F
+
+## NERDCommenter @custom:
+Toggles the comment state of the selected line(s) | [count]<leader>c<space>
+Comment out the current line or text selected in visual mode | [count]<leader>cc
+Toggles the comment state of the selected line(s) individually | [count]<leader>ci
