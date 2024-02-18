@@ -10,7 +10,7 @@ local ensure_packer = function()
 end
 
 local packer_bootstrap = ensure_packer()
-
+require("keybinding")
 return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 
@@ -90,7 +90,7 @@ return require("packer").startup(function(use)
 	require("nvim-tree-config")
 	require("nvim-cmp-config")
 	require("autoclose-config")
-    require("barbar-config")
+	require("barbar-config")
 	--require("image-config")
 	require("telescope-config")
 	-- require('ale-config')
@@ -98,7 +98,7 @@ return require("packer").startup(function(use)
 	require("lualine").setup()
 	require("virt-column").setup()
 
-    if packer_bootstrap then
+	if packer_bootstrap then
 		require("packer").sync()
 	end
 end)

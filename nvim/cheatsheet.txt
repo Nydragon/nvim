@@ -1,5 +1,6 @@
 ## Telescope @custom:
 Search, Preview and Open file | <leader>ff
+Live grep of all files in current directory| <leader>fg
 
 ## Formatter @custom:
 Format current buffer | <leader>f
@@ -9,3 +10,6 @@ Format and write current buffer | <leader>F
 Toggles the comment state of the selected line(s) | [count]<leader>c<space>
 Comment out the current line or text selected in visual mode | [count]<leader>cc
 Toggles the comment state of the selected line(s) individually | [count]<leader>ci
+
+## cheatsheet @custom:
+Shows a searchable list of all keybindings | <leader>?
