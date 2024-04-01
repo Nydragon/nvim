@@ -1,5 +1,4 @@
-require('autoclose').setup(
-    {
+return {
         keys = {
             ["("] = { escape = false, close = true, pair = "()" },
             ["["] = { escape = false, close = true, pair = "[]" },
@@ -22,5 +21,4 @@ require('autoclose').setup(
             auto_indent = true,
             disable_command_mode = false,
         },
-    }
-)
+}
