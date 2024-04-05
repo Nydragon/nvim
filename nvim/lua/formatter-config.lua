@@ -19,6 +19,9 @@ local function build()
 					}
 				end,
 			},
+			nix = {
+				require("formatter.filetypes.nix").nixfmt,
+			},
 			["*"] = {
 				require("formatter.filetypes.any").remove_trailing_whitespace,
 			},

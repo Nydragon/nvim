@@ -1,7 +1,6 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-
 local function open_nvim_tree(data)
 	-- buffer is a real file on the disk
 	local real_file = vim.fn.filereadable(data.file) == 1
