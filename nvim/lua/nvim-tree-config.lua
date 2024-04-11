@@ -12,8 +12,19 @@ local function open_nvim_tree(data)
 		return
 	end
 
+	local path = data.file
+
+	if vim.fn.isdirectory(data.file) == 0 then
+		_, _, i = path:find(".*()/.*")
+		path = path:sub(0, i)
+	end
+
 	-- open the tree, find the file but don't focus it
-	require("nvim-tree.api").tree.toggle({ focus = false, find_file = true })
+	require("nvim-tree.api").tree.toggle({
+		focus = false,
+		find_file = true,
+		path = path,
+	})
 end
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
