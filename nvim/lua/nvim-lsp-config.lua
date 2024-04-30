@@ -48,3 +48,5 @@ require("lspconfig").clangd.setup({})
 require("lspconfig").rust_analyzer.setup({})
 
 require("lspconfig").nixd.setup({})
+
+require("lspconfig").r_language_server.setup({})

@@ -25,6 +25,12 @@ local function build()
 			c = {
 				require("formatter.filetypes.c").clangformat,
 			},
+			r = {
+				require("formatter.filetypes.r").styler,
+			},
+			python = {
+				require("formatter.filetypes.python").black,
+			},
 			["*"] = {
 				require("formatter.filetypes.any").remove_trailing_whitespace,
 			},
