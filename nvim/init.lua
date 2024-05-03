@@ -71,4 +71,5 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 -- Enable filetype plugins
 vim.cmd("filetype plugin on")
 
+vim.g.mapleader = ","
 require("plugins")

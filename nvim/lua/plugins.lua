@@ -37,14 +37,24 @@ require("lazy").setup({
 			require("barbar-config")
 		end,
 	},
-	"nvim-treesitter/nvim-treesitter",
+	{ "nvim-treesitter/nvim-treesitter", enabled = false },
 	{
 		"neovim/nvim-lspconfig", -- Configurations for Nvim LSP
 		init = function()
 			require("nvim-lsp-config")
 		end,
 	},
-	"simrat39/rust-tools.nvim",
+	{
+		"simrat39/rust-tools.nvim",
+		opts = {
+			on_attach = function(_, bufnr)
+				-- Hover actions
+				vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+				-- Code action groups
+				vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+			end,
+		},
+	},
 	"preservim/nerdcommenter", -- (batch)commenting tool
 	{
 		"m4xshen/autoclose.nvim",
@@ -53,9 +63,6 @@ require("lazy").setup({
 	"lukas-reineke/indent-blankline.nvim",
 	{
 		"EdenEast/nightfox.nvim", -- themeing
-		init = function()
-			vim.cmd("colorscheme carbonfox")
-		end,
 		opts = {
 			options = {
 				styles = {
@@ -66,21 +73,14 @@ require("lazy").setup({
 			},
 		},
 	},
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000,
+	},
 	"lukas-reineke/virt-column.nvim", -- thin bar indicating an arbitray character limit
 	{
 		"nvim-telescope/telescope.nvim", -- fuzzy file finder
-		opts = {
-			pickers = {
-				find_files = {
-					-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
-					-- find_command = { "rg", "--files", "--hidden", "--no-ignore", "--glob", "!**/.git/*" },
-					-- 	find_command = { "fd" },
-				},
-			},
-		},
-		init = function()
-			require("telescope-config")
-		end,
 	},
 	{
 		"hrsh7th/nvim-cmp",
@@ -100,8 +100,10 @@ require("lazy").setup({
 	},
 	{
 		"mhartington/formatter.nvim",
+		--opts = require("formatter-config").build(),
 		config = function()
 			opts = require("formatter-config").build()
+
 			require("formatter").setup(opts)
 		end,
 	},
@@ -113,6 +115,40 @@ require("lazy").setup({
 			"nvim-lua/plenary.nvim",
 		},
 	},
+	{
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		opts = {
+			direction = "float",
+		},
+		config = function(_, opts)
+			local Terminal = require("toggleterm.terminal").Terminal
+			local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
+
+			function _lazygit_toggle()
+				lazygit:toggle()
+			end
+
+			require("toggleterm").setup(opts)
+		end,
+	},
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		init = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
+		end,
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		},
+		config = function(_, opts)
+			require("which-key-config")
+			require("which-key").setup(opts)
+		end,
+	},
 })
 
 local augroup = vim.api.nvim_create_augroup
@@ -121,19 +157,6 @@ augroup("__formatter__", { clear = true })
 autocmd("BufWritePost", {
 	group = "__formatter__",
 	command = ":FormatWrite",
-})
-
-local rt = require("rust-tools")
-
-rt.setup({
-	server = {
-		on_attach = function(_, bufnr)
-			-- Hover actions
-			vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-			-- Code action groups
-			vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-		end,
-	},
 })
 
 -- LSP Diagnostics Options Setup
@@ -163,3 +186,11 @@ vim.cmd([[
     set signcolumn=yes
     autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 ]])
+
+vim.cmd("colorscheme catppuccin")
+
+--vim.api.nvim_create_autocmd({ "VimLeave" }, {
+--callback = function()
+--vim.cmd("close")
+--end,
+--})

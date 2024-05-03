@@ -13,3 +13,7 @@ Toggles the comment state of the selected line(s) individually | [count]<leader>
 
 ## cheatsheet @custom:
 Shows a searchable list of all keybindings | <leader>?
+
+## Term @custom
+Opens a normal interactive terminal | <c-c>
+Opens lazygit | <leader>g
