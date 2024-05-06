@@ -21,6 +21,7 @@ require("lazy").setup({
 			require("nvim-tree-config")
 		end,
 		opts = {
+			update_focused_file = { enable = true },
 			filters = {
 				dotfiles = false,
 				git_ignored = false,
@@ -33,11 +34,18 @@ require("lazy").setup({
 			"nvim-tree/nvim-web-devicons", -- optional, for file icons
 			"lewis6991/gitsigns.nvim",
 		},
-		init = function()
-			require("barbar-config")
-		end,
+		opts = {
+			-- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+			animation = true,
+			-- insert_at_start = true,
+			-- …etc.
+		},
 	},
-	{ "nvim-treesitter/nvim-treesitter", enabled = false },
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+		enabled = false,
+	},
 	{
 		"neovim/nvim-lspconfig", -- Configurations for Nvim LSP
 		init = function()
@@ -78,7 +86,8 @@ require("lazy").setup({
 		name = "catppuccin",
 		priority = 1000,
 	},
-	"lukas-reineke/virt-column.nvim", -- thin bar indicating an arbitray character limit
+	{ "lukas-reineke/virt-column.nvim", opts = { virtcolumn = "120" } }, -- thin bar indicating an arbitray character limit
+
 	{
 		"nvim-telescope/telescope.nvim", -- fuzzy file finder
 	},
@@ -102,7 +111,7 @@ require("lazy").setup({
 		"mhartington/formatter.nvim",
 		--opts = require("formatter-config").build(),
 		config = function()
-			opts = require("formatter-config").build()
+			local opts = require("formatter-config").build()
 
 			require("formatter").setup(opts)
 		end,
@@ -125,7 +134,7 @@ require("lazy").setup({
 			local Terminal = require("toggleterm.terminal").Terminal
 			local lazygit = Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" })
 
-			function _lazygit_toggle()
+			function _Lazygit_toggle()
 				lazygit:toggle()
 			end
 
@@ -140,6 +149,7 @@ require("lazy").setup({
 			vim.o.timeoutlen = 300
 		end,
 		opts = {
+			hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "^:", "^ ", "^call ", "^lua " },
 			-- your configuration comes here
 			-- or leave it empty to use the default settings
 			-- refer to the configuration section below
@@ -159,15 +169,6 @@ autocmd("BufWritePost", {
 	command = ":FormatWrite",
 })
 
--- LSP Diagnostics Options Setup
-local sign = function(opts)
-	vim.fn.sign_define(opts.name, {
-		texthl = opts.name,
-		text = opts.text,
-		numhl = "",
-	})
-end
-
 vim.diagnostic.config({
 	virtual_text = false,
 	signs = true,
@@ -181,11 +182,6 @@ vim.diagnostic.config({
 		prefix = "",
 	},
 })
-
-vim.cmd([[
-    set signcolumn=yes
-    autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
-]])
 
 vim.cmd("colorscheme catppuccin")
 

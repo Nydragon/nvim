@@ -15,7 +15,7 @@ local function open_nvim_tree(data)
 	local path = data.file
 
 	if vim.fn.isdirectory(data.file) == 0 then
-		_, _, i = path:find(".*()/.*")
+		local _, _, i = path:find(".*()/.*")
 		path = path:sub(0, i)
 	end
 

@@ -14,8 +14,8 @@ return {
 		["`"] = { escape = true, close = true, pair = "``" },
 	},
 	options = {
-		disabled_filetypes = { "text" },
-		disable_when_touch = false,
+		disabled_filetypes = { "TelescopePrompt", "text", "markdown" },
+		disable_when_touch = true,
 		touch_regex = "[%w(%[{]",
 		pair_spaces = false,
 		auto_indent = true,
