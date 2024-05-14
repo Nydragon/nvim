@@ -4,6 +4,7 @@ wk.register({
 	t = {
 		["1"] = {
 			"<Cmd>BufferGoto 1<CR>",
+			"Go to Buffer 1",
 		},
 		d = {
 			"<Cmd>BufferClose<CR>",
@@ -28,6 +29,14 @@ wk.register({
 			"<cmd>Telescope help_tags<CR>",
 			"Find Help",
 		},
+		i = {
+			"<cmd>Telescope builtin<cr>",
+			"Search all Telescope builtins",
+		},
+		t = {
+			"<cmd>TodoTelescope <cr>",
+			"Open Todo in Telescope",
+		},
 	},
 	n = {
 		"Terminal",
@@ -47,4 +56,37 @@ wk.register({
 		"<cmd>lua vim.lsp.buf.rename()<CR>",
 		"Rename a token",
 	},
+	x = {
+		x = {
+			"<cmd>TroubleToggle<cr>",
+			"Open Trouble",
+		},
+		w = {
+			"<cmd>TroubleToggle workspace_diagnostics<cr>",
+			"",
+		},
+		d = {
+			"<cmd>TroubleToggle document_diagnostics<cr>",
+			"",
+		},
+		q = {
+			"<cmd>TroubleToggle quickfix<cr>",
+			"",
+		},
+		l = {
+			"<cmd>TroubleToggle loclist<cr>",
+			"",
+		},
+		r = {
+			"<cmd>TroubleToggle lsp_references<cr>",
+			"",
+		},
+	},
 }, { prefix = "<leader>" })
+
+wk.register({
+	["/"] = {
+		"<cmd>Telescope current_buffer_fuzzy_find<cr>",
+		"Search for a string in the current buffer",
+	},
+})

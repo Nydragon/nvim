@@ -44,7 +44,7 @@ require("lazy").setup({
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		enabled = false,
+		enabled = true,
 	},
 	{
 		"neovim/nvim-lspconfig", -- Configurations for Nvim LSP
@@ -140,6 +140,39 @@ require("lazy").setup({
 
 			require("toggleterm").setup(opts)
 		end,
+	},
+	{
+		"lewis6991/gitsigns.nvim",
+		opts = {},
+	},
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {},
+	},
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = { options = { globalstatus = true } },
+	},
+	{
+		"folke/trouble.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {
+			position = "right",
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		},
+	},
+	{
+		"b0o/incline.nvim",
+		config = function()
+			require("incline").setup()
+			require("incline-config")
+		end,
+		-- Optional: Lazy load Incline
+		event = "VeryLazy",
 	},
 	{
 		"folke/which-key.nvim",

@@ -9,8 +9,6 @@ local function prettier()
 		args = {
 			"--stdin-filepath",
 			util.escape_path(util.get_current_buffer_file_path()),
-			"--tab-width",
-			"4",
 		},
 		stdin = true,
 		try_node_modules = true,
@@ -58,6 +56,9 @@ local function build()
 			javascript = {
 				prettier,
 			},
+			yaml = {
+				prettier,
+			},
 			fish = {
 				require("formatter.filetypes.fish").fishindent,
 			},
@@ -66,6 +67,9 @@ local function build()
 			},
 			toml = {
 				require("formatter.filetypes.toml").taplo,
+			},
+			sh = {
+				require("formatter.filetypes.sh").shfmt,
 			},
 			["*"] = {
 				require("formatter.filetypes.any").remove_trailing_whitespace,

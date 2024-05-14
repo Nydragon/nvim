@@ -75,4 +75,6 @@ vim.cmd("filetype plugin on")
 
 vim.g.mapleader = " "
 
+vim.api.nvim_set_option("clipboard", "unnamedplus")
+
 require("plugins")
