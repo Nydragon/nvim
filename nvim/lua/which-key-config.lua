@@ -37,6 +37,10 @@ wk.register({
 			"<cmd>TodoTelescope <cr>",
 			"Open Todo in Telescope",
 		},
+		u = {
+			"<cmd>UrlView<cr>",
+			"Display and open URLs in current buffer",
+		},
 	},
 	n = {
 		"Terminal",

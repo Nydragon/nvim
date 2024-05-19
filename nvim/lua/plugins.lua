@@ -45,6 +45,9 @@ require("lazy").setup({
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		enabled = true,
+		opts = {
+			ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
+		},
 	},
 	{
 		"neovim/nvim-lspconfig", -- Configurations for Nvim LSP
@@ -61,6 +64,13 @@ require("lazy").setup({
 				-- Code action groups
 				vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
 			end,
+		},
+	},
+	{
+		"axieax/urlview.nvim",
+		opts = {
+			default_picker = "telescope",
+			default_action = "system",
 		},
 	},
 	"preservim/nerdcommenter", -- (batch)commenting tool
