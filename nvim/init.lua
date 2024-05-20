@@ -74,6 +74,7 @@ vim.cmd("set signcolumn=yes")
 vim.cmd("filetype plugin on")
 
 vim.g.mapleader = " "
+vim.o.termguicolors = 1
 
 vim.api.nvim_set_option("clipboard", "unnamedplus")
 

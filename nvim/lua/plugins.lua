@@ -96,7 +96,15 @@ require("lazy").setup({
 		name = "catppuccin",
 		priority = 1000,
 	},
-	{ "lukas-reineke/virt-column.nvim", opts = { virtcolumn = "120" } }, -- thin bar indicating an arbitray character limit
+	{
+		"lukas-reineke/virt-column.nvim",
+		opts = {
+			virtcolumn = "120",
+			exclude = {
+				buftypes = {},
+			},
+		},
+	}, -- thin bar indicating an arbitray character limit
 
 	{
 		"nvim-telescope/telescope.nvim", -- fuzzy file finder
@@ -119,12 +127,32 @@ require("lazy").setup({
 	},
 	{
 		"mhartington/formatter.nvim",
-		--opts = require("formatter-config").build(),
 		config = function()
 			local opts = require("formatter-config").build()
 
 			require("formatter").setup(opts)
+        end
+    },
+    {
+            "rcarriga/nvim-notify",
+        opts = {
+			render = "wrapped-compact",
+			max_width = function()
+				return math.floor(vim.o.columns * 0.5)
+			end,
+		},
+		config = function(_, opts)
+			require("notify").setup(opts)
+			vim.notify = require("notify")
 		end,
+	},
+	{
+		"stevearc/dressing.nvim",
+	},
+	{
+		"nvimdev/dashboard-nvim",
+		event = "VimEnter",
+		dependencies = { { "nvim-tree/nvim-web-devicons" } },
 	},
 	{
 		"sudormrfbin/cheatsheet.nvim",
