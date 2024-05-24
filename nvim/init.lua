@@ -43,7 +43,6 @@ vim.g.nvim_tree_respect_buf_cwd = 1
 vim.api.nvim_exec(
 	[[
   autocmd! TextYankPost * silent! lua vim.highlight.on_yank()
-  autocmd! BufWritePost * FormatWrite
 ]],
 	false
 )

@@ -21,6 +21,9 @@ require("lazy").setup({
 			require("nvim-tree-config")
 		end,
 		opts = {
+			diagnostics = {
+				enable = true,
+			},
 			update_focused_file = { enable = true },
 			filters = {
 				dotfiles = false,
@@ -59,6 +62,7 @@ require("lazy").setup({
 		"simrat39/rust-tools.nvim",
 		opts = {
 			on_attach = function(_, bufnr)
+				vim.notify("rust-tools attached")
 				-- Hover actions
 				vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
 				-- Code action groups
@@ -106,8 +110,16 @@ require("lazy").setup({
 		},
 	}, -- thin bar indicating an arbitray character limit
 
-	{
-		"nvim-telescope/telescope.nvim", -- fuzzy file finder
+	{ -- fuzzy file finder
+		"nvim-telescope/telescope.nvim",
+		opts = {
+			pickers = {
+				find_files = {
+					--hidden = true,
+					no_ignore = true,
+				},
+			},
+		},
 	},
 	{
 		"hrsh7th/nvim-cmp",
@@ -131,11 +143,11 @@ require("lazy").setup({
 			local opts = require("formatter-config").build()
 
 			require("formatter").setup(opts)
-        end
-    },
-    {
-            "rcarriga/nvim-notify",
-        opts = {
+		end,
+	},
+	{
+		"rcarriga/nvim-notify",
+		opts = {
 			render = "wrapped-compact",
 			max_width = function()
 				return math.floor(vim.o.columns * 0.5)
@@ -147,12 +159,20 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"direnv/direnv.vim",
+	},
+	{
 		"stevearc/dressing.nvim",
 	},
 	{
 		"nvimdev/dashboard-nvim",
 		event = "VimEnter",
-		dependencies = { { "nvim-tree/nvim-web-devicons" } },
+		opts = {
+			change_to_vcs_root = true,
+		},
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
 	},
 	{
 		"sudormrfbin/cheatsheet.nvim",
@@ -230,14 +250,6 @@ require("lazy").setup({
 			require("which-key").setup(opts)
 		end,
 	},
-})
-
-local augroup = vim.api.nvim_create_augroup
-local autocmd = vim.api.nvim_create_autocmd
-augroup("__formatter__", { clear = true })
-autocmd("BufWritePost", {
-	group = "__formatter__",
-	command = ":FormatWrite",
 })
 
 vim.diagnostic.config({

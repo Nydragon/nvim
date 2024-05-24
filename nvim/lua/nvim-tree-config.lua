@@ -1,7 +1,14 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+local api = require("nvim-tree.api")
 
 local function open_nvim_tree(data)
+	if api.tree.is_visible() then
+		return
+	end
+
+	vim.notify(vim.loop.cwd())
+
 	-- buffer is a real file on the disk
 	local real_file = vim.fn.filereadable(data.file) == 1
 
@@ -20,11 +27,11 @@ local function open_nvim_tree(data)
 	end
 
 	-- open the tree, find the file but don't focus it
-	require("nvim-tree.api").tree.toggle({
+	api.tree.open({
 		focus = false,
 		find_file = true,
-		path = path,
+		path = vim.loop.cwd(),
 	})
 end
 
---vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+vim.api.nvim_create_autocmd({ "BufAdd" }, { callback = open_nvim_tree })
