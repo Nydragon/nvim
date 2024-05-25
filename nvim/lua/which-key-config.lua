@@ -61,6 +61,7 @@ wk.register({
 		"Rename a token",
 	},
 	x = {
+		"Toggle Trouble",
 		x = {
 			"<cmd>TroubleToggle<cr>",
 			"Open Trouble",
@@ -84,6 +85,12 @@ wk.register({
 		r = {
 			"<cmd>TroubleToggle lsp_references<cr>",
 			"",
+		},
+	},
+	b = {
+		t = {
+			"<cmd>BlameToggle virtual<cr>",
+			"Toggle Virtual Blame",
 		},
 	},
 }, { prefix = "<leader>" })

@@ -183,6 +183,13 @@ require("lazy").setup({
 		},
 	},
 	{
+		"FabijanZulj/blame.nvim",
+		opts = {
+			virtual_style = "right",
+			merge_consecutive = true,
+		},
+	},
+	{
 		"akinsho/toggleterm.nvim",
 		version = "*",
 		opts = {
