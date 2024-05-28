@@ -25,9 +25,6 @@ vim.o.cursorline = true
 -- Enable auto-indentation
 vim.o.autoindent = true
 
--- Set completion options
-vim.o.completeopt = "menu,menuone,noselect"
-
 -- Highlight search results
 vim.o.hlsearch = true
 
