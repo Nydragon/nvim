@@ -38,20 +38,23 @@ local lsp_flags = {
 	-- This is the default in Nvim 0.7+
 	debounce_text_changes = 150,
 }
-require("lspconfig")["pyright"].setup({
+
+local lspconfig = require("lspconfig")
+
+lspconfig.pyright.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
 })
 
-require("lspconfig").clangd.setup({})
+lspconfig.clangd.setup({})
 
-require("lspconfig").rust_analyzer.setup({})
+lspconfig.rust_analyzer.setup({})
 
-require("lspconfig").nixd.setup({})
+lspconfig.nixd.setup({})
 
-require("lspconfig").r_language_server.setup({})
+lspconfig.r_language_server.setup({})
 
-require("lspconfig").lua_ls.setup({
+lspconfig.lua_ls.setup({
 	on_init = function(client)
 		local path = client.workspace_folders[1].name
 		if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
@@ -81,6 +84,6 @@ require("lspconfig").lua_ls.setup({
 	},
 })
 
-require("lspconfig").bashls.setup({})
+lspconfig.bashls.setup({})
 
-require("lspconfig").zls.setup({})
+lspconfig.zls.setup({})
