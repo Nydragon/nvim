@@ -59,6 +59,12 @@ local function build()
 			yaml = {
 				prettier,
 			},
+			css = {
+				prettier,
+			},
+			scss = {
+				prettier,
+			},
 			fish = {
 				require("formatter.filetypes.fish").fishindent,
 			},
