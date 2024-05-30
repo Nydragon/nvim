@@ -1,17 +1,7 @@
-vim.o.nocompatible = true
 vim.o.showmatch = true
 
 vim.wo.number = true
 vim.wo.relativenumber = true
-
--- Set background color for ColorColumn
-vim.o.cc = 80
-vim.api.nvim_exec(
-	[[
-  hi ColorColumn ctermbg=black guibg=black
-]],
-	false
-)
 
 vim.o.mouse = "a"
 
@@ -36,14 +26,6 @@ vim.o.ttyfast = true
 
 vim.g.nvim_tree_respect_buf_cwd = 1
 
--- Highlight on yank (copy). It will do a nice highlight blink of the thing you just copied.
-vim.api.nvim_exec(
-	[[
-  autocmd! TextYankPost * silent! lua vim.highlight.on_yank()
-]],
-	false
-)
-
 --Set completeopt to have a better completion experience
 -- :help completeopt
 -- menuone: popup even when there's only one match
@@ -53,7 +35,7 @@ vim.api.nvim_exec(
 -- updatetime: set updatetime for CursorHold
 vim.opt.completeopt = { "menuone", "noselect", "noinsert" }
 vim.opt.shortmess = vim.opt.shortmess + { c = true }
-vim.api.nvim_set_option("updatetime", 300)
+vim.g.updatetime = 300
 
 -- Fixed column for diagnostics to appear
 -- Show autodiagnostic popup on cursor hover_range
@@ -65,13 +47,16 @@ vim.api.nvim_create_autocmd("CursorHold", {
 	end,
 })
 
-vim.cmd("set signcolumn=yes")
--- Enable filetype plugins
-vim.cmd("filetype plugin on")
+vim.api.nvim_create_autocmd("TextYankPost", {
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+})
+
+vim.g.signcolumn = "yes"
 
 vim.g.mapleader = " "
-vim.o.termguicolors = 1
 
-vim.api.nvim_set_option("clipboard", "unnamedplus")
+vim.g.clipboard = "unnamedplus"
 
 require("plugins")
