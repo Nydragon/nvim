@@ -57,6 +57,6 @@ vim.g.signcolumn = "yes"
 
 vim.g.mapleader = " "
 
-vim.g.clipboard = "unnamedplus"
+vim.o.clipboard = "unnamedplus"
 
 require("plugins")
