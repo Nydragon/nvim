@@ -53,10 +53,31 @@ require("lazy").setup({
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		enabled = true,
 		opts = {
-			ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
+			highlight = {
+				enable = true,
+				additional_vim_regex_highlighting = false,
+			},
+			ensure_installed = {
+				"c",
+				"lua",
+				"vim",
+				"vimdoc",
+				"query",
+				"json",
+				"javascript",
+				"typescript",
+				"json5",
+				"jsonc",
+				"xml",
+				"html",
+				"zig",
+				"rust",
+			},
 		},
+		config = function(_, opts)
+			require("nvim-treesitter.configs").setup(opts)
+		end,
 	},
 	{
 		"neovim/nvim-lspconfig", -- Configurations for Nvim LSP
@@ -265,7 +286,7 @@ vim.diagnostic.config({
 	severity_sort = false,
 	float = {
 		border = "rounded",
-		source = "always",
+		source = true,
 		header = "",
 		prefix = "",
 	},
