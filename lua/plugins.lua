@@ -128,7 +128,6 @@ require("lazy").setup({
 			},
 		},
 	}, -- thin bar indicating an arbitray character limit
-
 	{ -- fuzzy file finder
 		"nvim-telescope/telescope.nvim",
 		opts = {
