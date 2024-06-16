@@ -32,7 +32,8 @@ local function open_nvim_tree(data)
 	})
 end
 
-vim.api.nvim_create_autocmd({ "BufEnter" }, { callback = open_nvim_tree })
+-- Using VimEnter is crucial, other autocmds will break the "focus = false" behaviour
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
 -- From https://github.com/nvim-tree/nvim-tree.lua/issues/1368#issuecomment-1512248492
 vim.api.nvim_create_autocmd("QuitPre", {
