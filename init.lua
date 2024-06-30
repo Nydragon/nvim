@@ -59,4 +59,8 @@ vim.g.mapleader = " "
 
 vim.o.clipboard = "unnamedplus"
 
+vim.filetype.add({
+	pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+})
+
 require("plugins")

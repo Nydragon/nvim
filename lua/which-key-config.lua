@@ -63,27 +63,19 @@ wk.register({
 	x = {
 		"Toggle Trouble",
 		x = {
-			"<cmd>TroubleToggle<cr>",
+			"<cmd>Trouble diagnostics toggle<cr>",
 			"Open Trouble",
 		},
-		w = {
-			"<cmd>TroubleToggle workspace_diagnostics<cr>",
-			"",
-		},
-		d = {
-			"<cmd>TroubleToggle document_diagnostics<cr>",
-			"",
-		},
 		q = {
-			"<cmd>TroubleToggle quickfix<cr>",
+			"<cmd>Trouble quickfix toggle<cr>",
 			"",
 		},
 		l = {
-			"<cmd>TroubleToggle loclist<cr>",
+			"<cmd>Trouble loclist toggle<cr>",
 			"",
 		},
 		r = {
-			"<cmd>TroubleToggle lsp_references<cr>",
+			"<cmd>Trouble lsp_references toggle<cr>",
 			"",
 		},
 	},
