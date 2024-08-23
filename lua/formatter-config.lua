@@ -32,6 +32,14 @@ local function build()
 					}
 				end,
 			},
+			qml = {
+				function()
+					return {
+						exe = "qmlformat",
+						args = { "--inplace" },
+					}
+				end,
+			},
 			nix = {
 				require("formatter.filetypes.nix").nixfmt,
 			},
