@@ -73,6 +73,7 @@ require("lazy").setup({
 				"html",
 				"zig",
 				"rust",
+				"qmljs",
 			},
 		},
 		config = function(_, opts)
@@ -243,6 +244,10 @@ require("lazy").setup({
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
 			auto_close = true,
+			modes = {
+				diagnostics = { auto_open = true },
+			},
+
 			win = { position = "right" },
 			-- your configuration comes here
 			-- or leave it empty to use the default settings
