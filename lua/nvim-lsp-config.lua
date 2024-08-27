@@ -54,7 +54,7 @@ lspconfig.nixd.setup({})
 
 lspconfig.r_language_server.setup({})
 
-lspconfig.qmlls.setup({})
+--lspconfig.qmlls.setup({})
 
 lspconfig.lua_ls.setup({
 	on_init = function(client)

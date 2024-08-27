@@ -102,7 +102,12 @@ require("lazy").setup({
 		"m4xshen/autoclose.nvim",
 		opts = require("autoclose-config"),
 	},
-	"lukas-reineke/indent-blankline.nvim",
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		---@module "ibl"
+		opts = { indent = { char = "│" } },
+	},
 	{
 		"EdenEast/nightfox.nvim", -- themeing
 		opts = {
