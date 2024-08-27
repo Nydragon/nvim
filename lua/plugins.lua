@@ -41,12 +41,6 @@ require("lazy").setup({
 		},
 	},
 	{
-		"andrewferrier/wrapping.nvim",
-		config = function()
-			require("wrapping").setup()
-		end,
-	},
-	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		opts = {
@@ -270,7 +264,8 @@ require("lazy").setup({
 		-- thin bar indicating an arbitray character limit
 		"lukas-reineke/virt-column.nvim",
 		opts = {
-			virtcolumn = "120",
+			virtcolumn = "120,100,80",
+			char = "│",
 			exclude = {
 				buftypes = {},
 			},
