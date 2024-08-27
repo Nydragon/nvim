@@ -34,6 +34,10 @@ local on_attach = function(_, bufnr)
 	end, bufopts)
 end
 
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+	virtual_text = true,
+})
+
 local lsp_flags = {
 	-- This is the default in Nvim 0.7+
 	debounce_text_changes = 150,
@@ -50,11 +54,13 @@ lspconfig.clangd.setup({})
 
 lspconfig.rust_analyzer.setup({})
 
-lspconfig.nixd.setup({})
+--lspconfig.nixd.setup({})
 
 lspconfig.r_language_server.setup({})
 
 --lspconfig.qmlls.setup({})
+
+lspconfig.nil_ls.setup({})
 
 lspconfig.lua_ls.setup({
 	on_init = function(client)
