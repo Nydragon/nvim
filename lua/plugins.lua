@@ -16,13 +16,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	--: Behaviour {{{
 	{
-		"andrewferrier/wrapping.nvim",
-		config = function()
-			require("wrapping").setup()
-		end,
-	},
-	--:}}}
-	{
 		"nvim-tree/nvim-tree.lua",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons", -- optional, for file icons
@@ -48,17 +41,10 @@ require("lazy").setup({
 		},
 	},
 	{
-		"romgrk/barbar.nvim",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons", -- optional, for file icons
-			"lewis6991/gitsigns.nvim",
-		},
-		opts = {
-			-- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
-			animation = true,
-			-- insert_at_start = true,
-			-- …etc.
-		},
+		"andrewferrier/wrapping.nvim",
+		config = function()
+			require("wrapping").setup()
+		end,
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -118,32 +104,6 @@ require("lazy").setup({
 		---@module "ibl"
 		opts = { indent = { char = "│" } },
 	},
-	{
-		"EdenEast/nightfox.nvim", -- themeing
-		opts = {
-			options = {
-				styles = {
-					comments = "italic",
-					keywords = "bold",
-					types = "italic,bold",
-				},
-			},
-		},
-	},
-	{
-		"catppuccin/nvim",
-		name = "catppuccin",
-		priority = 1000,
-	},
-	{
-		"lukas-reineke/virt-column.nvim",
-		opts = {
-			virtcolumn = "120",
-			exclude = {
-				buftypes = {},
-			},
-		},
-	}, -- thin bar indicating an arbitray character limit
 	{ -- fuzzy file finder
 		"nvim-telescope/telescope.nvim",
 		opts = {
@@ -172,6 +132,47 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"FabijanZulj/blame.nvim",
+		opts = {
+			virtual_style = "right",
+			merge_consecutive = true,
+		},
+	},
+	{
+		"folke/trouble.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {
+			auto_close = true,
+			modes = {
+				diagnostics = { auto_open = true },
+			},
+
+			win = { position = "right" },
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		},
+	},
+
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		init = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
+		end,
+		opts = {
+			hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "^:", "^ ", "^call ", "^lua " },
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		},
+		config = function(_, opts)
+			require("which-key-config")
+			require("which-key").setup(opts)
+		end,
+	},
+	{
 		"mhartington/formatter.nvim",
 		config = function()
 			local opts = require("formatter-config").build()
@@ -179,24 +180,9 @@ require("lazy").setup({
 			require("formatter").setup(opts)
 		end,
 	},
-	{
-		"rcarriga/nvim-notify",
-		opts = {
-			render = "wrapped-compact",
-			max_width = function()
-				return math.floor(vim.o.columns * 0.5)
-			end,
-		},
-		config = function(_, opts)
-			require("notify").setup(opts)
-			vim.notify = require("notify")
-		end,
-	},
+
 	{
 		"direnv/direnv.vim",
-	},
-	{
-		"stevearc/dressing.nvim",
 	},
 	{
 		"nvimdev/dashboard-nvim",
@@ -217,13 +203,6 @@ require("lazy").setup({
 		},
 	},
 	{
-		"FabijanZulj/blame.nvim",
-		opts = {
-			virtual_style = "right",
-			merge_consecutive = true,
-		},
-	},
-	{
 		"akinsho/toggleterm.nvim",
 		version = "*",
 		opts = {
@@ -240,6 +219,14 @@ require("lazy").setup({
 			require("toggleterm").setup(opts)
 		end,
 	},
+
+	--:}}}
+	--: Visuals {{{
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = { options = { globalstatus = true } },
+	},
 	{
 		"lewis6991/gitsigns.nvim",
 		opts = {},
@@ -250,24 +237,57 @@ require("lazy").setup({
 		opts = {},
 	},
 	{
-		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = { options = { globalstatus = true } },
+		"romgrk/barbar.nvim",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons", -- optional, for file icons
+			"lewis6991/gitsigns.nvim",
+		},
+		opts = {
+			-- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+			animation = true,
+			-- insert_at_start = true,
+			-- …etc.
+		},
 	},
 	{
-		"folke/trouble.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		"EdenEast/nightfox.nvim", -- themeing
 		opts = {
-			auto_close = true,
-			modes = {
-				diagnostics = { auto_open = true },
+			options = {
+				styles = {
+					comments = "italic",
+					keywords = "bold",
+					types = "italic,bold",
+				},
 			},
-
-			win = { position = "right" },
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
 		},
+	},
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000,
+	},
+	{
+		-- thin bar indicating an arbitray character limit
+		"lukas-reineke/virt-column.nvim",
+		opts = {
+			virtcolumn = "120",
+			exclude = {
+				buftypes = {},
+			},
+		},
+	},
+	{
+		"rcarriga/nvim-notify",
+		opts = {
+			render = "wrapped-compact",
+			max_width = function()
+				return math.floor(vim.o.columns * 0.5)
+			end,
+		},
+		config = function(_, opts)
+			require("notify").setup(opts)
+			vim.notify = require("notify")
+		end,
 	},
 	{
 		"b0o/incline.nvim",
@@ -279,23 +299,9 @@ require("lazy").setup({
 		event = "VeryLazy",
 	},
 	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		init = function()
-			vim.o.timeout = true
-			vim.o.timeoutlen = 300
-		end,
-		opts = {
-			hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "^:", "^ ", "^call ", "^lua " },
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		},
-		config = function(_, opts)
-			require("which-key-config")
-			require("which-key").setup(opts)
-		end,
+		"stevearc/dressing.nvim",
 	},
+	--:}}}
 })
 
 vim.diagnostic.config({
