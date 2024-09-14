@@ -138,7 +138,9 @@ require("lazy").setup({
 		opts = {
 			auto_close = true,
 			modes = {
-				diagnostics = { auto_open = true },
+				diagnostics = {
+					auto_open = false,
+				},
 			},
 
 			win = { position = "right" },
