@@ -1,95 +1,25 @@
 local wk = require("which-key")
 
-wk.register({
-	t = {
-		["1"] = {
-			"<Cmd>BufferGoto 1<CR>",
-			"Go to Buffer 1",
-		},
-		d = {
-			"<Cmd>BufferClose<CR>",
-			"Close Current Buffer",
-		},
-	},
-	f = {
-		"Telescope - Finder",
-		f = {
-			"<cmd>Telescope find_files<CR>",
-			"Find File",
-		},
-		g = {
-			"<cmd>Telescope live_grep<CR>",
-			"Live Grep",
-		},
-		b = {
-			"<cmd>Telescope buffers<CR>",
-			"Find Open Buffers",
-		},
-		h = {
-			"<cmd>Telescope help_tags<CR>",
-			"Find Help",
-		},
-		i = {
-			"<cmd>Telescope builtin<cr>",
-			"Search all Telescope builtins",
-		},
-		t = {
-			"<cmd>TodoTelescope <cr>",
-			"Open Todo in Telescope",
-		},
-		u = {
-			"<cmd>UrlView<cr>",
-			"Display and open URLs in current buffer",
-		},
-	},
-	n = {
-		"Terminal",
-		b = {
-			"<cmd>lua _Lazygit_toggle()<CR>",
-			"Open Lazygit",
-		},
-		j = {
-			"<cmd>ToggleTerm<CR>",
-			"Open Terminal",
-		},
-	},
-	c = {
-		"NerdCommenter",
-	},
-	r = {
-		"<cmd>lua vim.lsp.buf.rename()<CR>",
-		"Rename a token",
-	},
-	x = {
-		"Toggle Trouble",
-		x = {
-			"<cmd>Trouble diagnostics toggle<cr>",
-			"Open Trouble",
-		},
-		q = {
-			"<cmd>Trouble quickfix toggle<cr>",
-			"",
-		},
-		l = {
-			"<cmd>Trouble loclist toggle<cr>",
-			"",
-		},
-		r = {
-			"<cmd>Trouble lsp_references toggle<cr>",
-			"",
-		},
-	},
-	b = {
-		t = {
-			"<cmd>BlameToggle virtual<cr>",
-			"Toggle Virtual Blame",
-		},
-	},
-}, { prefix = "<leader>" })
-
-wk.register({
-	["/"] = {
-		"<cmd>Telescope current_buffer_fuzzy_find<cr>",
-		"Search for a string in the current buffer",
-	},
+wk.add({
+	{ "<leader>bt", "<cmd>BlameToggle virtual<cr>", desc = "Toggle Virtual Blame" },
+	{ "<leader>c", desc = "NerdCommenter" },
+	{ "<leader>f", desc = "Telescope - Finder" },
+	{ "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Find Open Buffers" },
+	{ "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "Find File" },
+	{ "<leader>fg", "<cmd>Telescope live_grep<CR>", desc = "Live Grep" },
+	{ "<leader>fh", "<cmd>Telescope help_tags<CR>", desc = "Find Help" },
+	{ "<leader>fi", "<cmd>Telescope builtin<cr>", desc = "Search all Telescope builtins" },
+	{ "<leader>ft", "<cmd>TodoTelescope <cr>", desc = "Open Todo in Telescope" },
+	{ "<leader>fu", "<cmd>UrlView<cr>", desc = "Display and open URLs in current buffer" },
+	{ "<leader>n", desc = "Terminal" },
+	{ "<leader>nb", "<cmd>lua _Lazygit_toggle()<CR>", desc = "Open Lazygit" },
+	{ "<leader>nj", "<cmd>ToggleTerm<CR>", desc = "Open Terminal" },
+	{ "<leader>r", "<cmd>lua vim.lsp.buf.rename()<CR>", desc = "Rename a token" },
+	{ "<leader>t1", "<Cmd>BufferGoto 1<CR>", desc = "Go to Buffer 1" },
+	{ "<leader>td", "<Cmd>BufferClose<CR>", desc = "Close Current Buffer" },
+	{ "<leader>x", desc = "Toggle Trouble" },
+	{ "<leader>xl", "<cmd>Trouble loclist toggle<cr>", desc = "" },
+	{ "<leader>xq", "<cmd>Trouble quickfix toggle<cr>", desc = "" },
+	{ "<leader>xr", "<cmd>Trouble lsp_references toggle<cr>", desc = "" },
+	{ "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Open Trouble" },
 })

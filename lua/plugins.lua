@@ -157,12 +157,7 @@ require("lazy").setup({
 			vim.o.timeout = true
 			vim.o.timeoutlen = 300
 		end,
-		opts = {
-			hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "^:", "^ ", "^call ", "^lua " },
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		},
+		opts = {},
 		config = function(_, opts)
 			require("which-key-config")
 			require("which-key").setup(opts)
@@ -316,9 +311,3 @@ vim.diagnostic.config({
 })
 
 vim.cmd("colorscheme catppuccin")
-
---vim.api.nvim_create_autocmd({ "VimLeave" }, {
---callback = function()
---vim.cmd("close")
---end,
---})
