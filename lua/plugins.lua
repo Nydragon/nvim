@@ -20,10 +20,14 @@ require("lazy").setup({
 		dependencies = {
 			"nvim-tree/nvim-web-devicons", -- optional, for file icons
 		},
-		init = function()
-			require("nvim-tree-config")
-		end,
+		--[[ init = function()
+           require("nvim-tree-config")
+		end,]]
 		opts = {
+			hijack_directories = {
+				enable = false,
+				auto_open = false,
+			},
 			renderer = {
 				highlight_modified = "name",
 			},
@@ -33,7 +37,7 @@ require("lazy").setup({
 			diagnostics = {
 				enable = true,
 			},
-			update_focused_file = { enable = true },
+			--update_focused_file = { enable = true },
 			filters = {
 				dotfiles = false,
 				git_ignored = false,
@@ -117,6 +121,9 @@ require("lazy").setup({
 				file_browser = {
 					theme = "ivy",
 					hijack_netrw = true,
+					auto_depth = true,
+                    no_ignore = false,
+                     hidden = { file_browser = true, folder_browser = true },
 				},
 			},
 		},
@@ -327,3 +334,11 @@ vim.diagnostic.config({
 })
 
 vim.cmd("colorscheme catppuccin")
+
+vim.api.nvim_create_autocmd({ "VimEnter" }, {
+	callback = function(data)
+		if vim.fn.isdirectory(data.file) == 1 then
+			require("telescope").extensions.file_browser.file_browser()
+		end
+	end,
+})
