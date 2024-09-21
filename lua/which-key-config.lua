@@ -22,4 +22,6 @@ wk.add({
 	{ "<leader>xq", "<cmd>Trouble quickfix toggle<cr>", desc = "" },
 	{ "<leader>xr", "<cmd>Trouble lsp_references toggle<cr>", desc = "" },
 	{ "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Open Trouble" },
+	{ "<leader>tt", require("telescope").extensions.file_browser.file_browser, desc = "Open the file browser" },
+	{ "/", require("telescope.builtin").grep_string, desc = "Search for a string in the current buffer" },
 })
