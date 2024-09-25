@@ -20,6 +20,7 @@ vim.o.hlsearch = true
 
 -- Highlight current line
 vim.o.cursorline = true
+vim.o.cursorlineopt = "number"
 
 -- Increase speed for terminals
 vim.o.ttyfast = true
@@ -64,3 +65,10 @@ vim.filetype.add({
 })
 
 require("plugins")
+vim.o.cmdheight = 0
+
+vim.cmd([[
+  highlight Normal guibg=none ctermbg=none
+  highlight NonText guibg=none ctermbg=none
+  highlight LineNr guifg=#606060
+]])

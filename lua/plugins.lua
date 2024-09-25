@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	--: Behaviour {{{
 	{
+		"VonHeikemen/lsp-zero.nvim",
 		"nvim-tree/nvim-tree.lua",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons", -- optional, for file icons
@@ -122,8 +123,8 @@ require("lazy").setup({
 					theme = "ivy",
 					hijack_netrw = true,
 					auto_depth = true,
-                    no_ignore = false,
-                     hidden = { file_browser = true, folder_browser = true },
+					no_ignore = false,
+					hidden = { file_browser = true, folder_browser = true },
 				},
 			},
 		},
